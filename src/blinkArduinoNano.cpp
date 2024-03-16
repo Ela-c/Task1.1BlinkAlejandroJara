@@ -60,7 +60,7 @@ void loop()
 {
   Serial.println("Start of the loop");
 
-  char plainText[] = "que chucha miras mi causa pedro sanchezzzzz";
+  char plainText[] = "Alejandro";
   textToMorse(plainText);
 
   Serial.println("End of the loop");
@@ -76,7 +76,6 @@ void textToMorse(char *inputText)
 {
 
   // Serial.println("Received input text: " + inputText);
-
   // get the size of input
   size_t inputLength = strlen(inputText);
 
@@ -85,7 +84,8 @@ void textToMorse(char *inputText)
   {
     Serial.print("Blinking letter: ");
     Serial.println(inputText[i]);
-    const char *morseLetter = letterToMorseCodeMap[(unsigned int)inputText[i] - 97];
+    int index = (unsigned int)inputText[i] < 97 ? (unsigned int)inputText[i] - 65 : (unsigned int)inputText[i] - 97;
+    const char *morseLetter = letterToMorseCodeMap[index];
     blink(morseLetter);
     delay(2000); // delay between letters
   }
